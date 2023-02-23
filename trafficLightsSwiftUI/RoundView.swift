@@ -13,7 +13,7 @@ struct RoundView: View {
     var body: some View {
         Circle()
             .foregroundColor(color)
-            .frame(width: 200, height: 200)
+            .frame(width: 150, height: 150)
             .overlay(Circle().stroke(.white, lineWidth: 3))
             .shadow(radius: 10)
     }
