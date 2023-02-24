@@ -13,6 +13,19 @@ struct TrafficLigtsView: View {
     @State private var colorThree: Color = .black
     @State private var buttonTitle = "START"
     
+    private func nextColor() {
+        if colorOne == .red {
+            colorOne = .black
+            colorTwo = .yellow
+        } else if colorTwo == .yellow {
+            colorTwo = .black
+            colorThree = .green
+        } else {
+            colorOne = .red
+            colorThree = .black
+        }
+    }
+    
     var body: some View {
         VStack {
             RoundView(color: colorOne)
@@ -22,18 +35,8 @@ struct TrafficLigtsView: View {
             Button(action: {
                 if buttonTitle != "NEXT" {
                     buttonTitle = "NEXT"
-                    colorOne = .red
-                } else if colorOne == .red {
-                    colorOne = .black
-                    colorTwo = .yellow
-                } else if colorTwo == .yellow {
-                    colorTwo = .black
-                    colorThree = .green
-                } else {
-                    colorOne = .red
-                    colorThree = .black
                 }
-                
+                nextColor()
             }) {
                 Text(buttonTitle)
                     .font(.largeTitle)
@@ -41,6 +44,7 @@ struct TrafficLigtsView: View {
             }
         }
         .padding()
+        .padding(.top)
     }
 }
 
